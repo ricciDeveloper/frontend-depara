@@ -1,0 +1,41 @@
+{
+  "name": "dexpara-frontend",
+  "version": "1.0.0",
+  "description": "Frontend moderno para o sistema DE x PARA Mapper",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "npx serve . -l 3000",
+    "build": "echo 'Static site - no build needed'",
+    "preview": "npx serve . -l 4173",
+    "deploy": "vercel --prod",
+    "deploy:preview": "vercel"
+  },
+  "keywords": [
+    "frontend",
+    "html",
+    "css",
+    "javascript",
+    "dexpara",
+    "automation",
+    "url-mapping"
+  ],
+  "author": "João Ricci",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.2.1",
+    "vercel": "^32.0.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joaoricci/dexpara-automation.git",
+    "directory": "front"
+  },
+  "homepage": "https://dexpara-automation.vercel.app/",
+  "bugs": {
+    "url": "https://github.com/joaoricci/dexpara-automation/issues"
+  }
+}

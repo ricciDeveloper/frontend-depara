@@ -1,0 +1,181 @@
+
+
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  
+  <!-- Primary Meta Tags -->
+  <title>DE x PARA Mapper - Sistema de Automação de Mapeamento de URLs</title>
+  <meta name="title" content="DE x PARA Mapper - Sistema de Automação de Mapeamento de URLs">
+  <meta name="description" content="Sistema inteligente para mapeamento automático de URLs DE x PARA com análise semântica, score mínimo de 80% e integração com IA Gemini. Processa planilhas Excel e gera resultados precisos.">
+  <meta name="keywords" content="mapeamento de URLs, automação, Excel, análise semântica, Gemini AI, SEO, migração de site, DE x PARA">
+  <meta name="author" content="João Ricci">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="pt-BR">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://dexpara-automation.vercel.app/">
+  <meta property="og:title" content="DE x PARA Mapper - Sistema de Automação de Mapeamento de URLs">
+  <meta property="og:description" content="Sistema inteligente para mapeamento automático de URLs DE x PARA com análise semântica, score mínimo de 80% e integração com IA Gemini.">
+  <meta property="og:image" content="https://dexpara-automation.vercel.app/og-image.png">
+  <meta property="og:site_name" content="DE x PARA Mapper">
+  <meta property="og:locale" content="pt_BR">
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://dexpara-automation.vercel.app/">
+  <meta property="twitter:title" content="DE x PARA Mapper - Sistema de Automação de Mapeamento de URLs">
+  <meta property="twitter:description" content="Sistema inteligente para mapeamento automático de URLs DE x PARA com análise semântica, score mínimo de 80% e integração com IA Gemini.">
+  <meta property="twitter:image" content="https://dexpara-automation.vercel.app/og-image.png">
+  <meta property="twitter:creator" content="@joaoricci">
+  
+  <!-- Additional SEO Meta Tags -->
+  <meta name="theme-color" content="#3b82f6">
+  <meta name="msapplication-TileColor" content="#3b82f6">
+  <meta name="application-name" content="DE x PARA Mapper">
+  <meta name="apple-mobile-web-app-title" content="DE x PARA Mapper">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://dexpara-automation.vercel.app/">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  
+  <!-- Preconnect to external domains -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "DE x PARA Mapper",
+    "description": "Sistema inteligente para mapeamento automático de URLs DE x PARA com análise semântica e integração com IA Gemini",
+    "url": "https://dexpara-automation.vercel.app/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web Browser",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "BRL"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "João Ricci"
+    },
+    "featureList": [
+      "Mapeamento automático de URLs",
+      "Análise semântica inteligente",
+      "Integração com IA Gemini",
+      "Processamento de planilhas Excel",
+      "Score mínimo de 80%",
+      "Interface moderna e responsiva"
+    ]
+  }
+  </script>
+
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="header-content">
+        <h1>DE x PARA Mapper</h1>
+        <div class="subtitle">Upload: planilha .xlsx com abas "DE" e "RASTREIO" contendo colunas: url, slug, meta_title, meta_description, h1</div>
+      </div>
+      <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
+        <span class="theme-icon">🌙</span>
+      </button>
+    </header>
+
+    <div class="main-content">
+      <div class="main-panel">
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Configuração</h2>
+            <p class="card-subtitle">Configure os parâmetros para processamento da planilha</p>
+          </div>
+          
+          <div class="field">
+            <label>Carregar arquivo .xlsx</label>
+            <input id="file" type="file" accept=".xlsx,.xls" />
+          </div>
+          
+          <div class="field">
+            <label>Similarity weights (slug, title, description, h1)</label>
+            <input id="weights" type="text" value="0.4,0.25,0.2,0.15" placeholder="0.4,0.25,0.2,0.15" />
+            <div class="small">Score mínimo: 80% | Resultado: 3 colunas (DE | PARA | SCORE)</div>
+          </div>
+          
+          <div class="field">
+            <button id="process">Processar planilha</button>
+          </div>
+          
+          <!-- Progress Bar -->
+          <div id="progressContainer" class="progress-container" style="display: none;">
+            <div class="progress-header">
+              <span id="progressMessage">Processando...</span>
+              <span id="progressPercentage">0%</span>
+            </div>
+            <div class="progress-bar">
+              <div id="progressBarFill" class="progress-bar-fill"></div>
+            </div>
+            <div id="progressDetails" class="progress-details"></div>
+          </div>
+          
+          <div id="status"></div>
+        </div>
+
+        <div id="results"></div>
+      </div>
+
+      <div class="sidebar">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Sistema DE x PARA</h3>
+          </div>
+          <ul>
+            <li>Processa 100% das URLs DE</li>
+            <li>Encontra melhor match PARA para cada URL</li>
+            <li>Score mínimo de 80% (preferencial)</li>
+            <li>Resultado: 3 colunas simples (DE | PARA | SCORE)</li>
+            <li>Integração Gemini AI para precisão</li>
+            <li>Planilha de saída limpa e objetiva</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Documentação Útil</h3>
+          </div>
+          <ul>
+            <li><a href="https://ai.google.dev/gemini-api/docs/quickstart" target="_blank">Gemini API quickstart</a></li>
+            <li><a href="https://developers.google.com/learn/pathways/solution-ai-gemini-getting-started-web" target="_blank">Gemini + Web (prototipagem)</a></li>
+            <li><a href="https://cloud.google.com/vertex-ai/generative-ai/docs/start/quickstart" target="_blank">Vertex AI / Gemini</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- libs: SheetJS for xlsx parsing. CDN used for prototype -->
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+
+  <script src="script.js"></script>
+</body>
+</html>
