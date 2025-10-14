@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // ===== SERVER CONNECTION TEST =====
 async function testServerConnection() {
   try {
-    const response = await fetch(`${API_BASE_URL}/api/health`);
+    const response = await apiRequest(API_CONFIG.ENDPOINTS.HEALTH);
     if (response.ok) {
       const data = await response.json();
       console.log('✅ Servidor conectado:', data);
@@ -52,7 +52,7 @@ async function testServerConnection() {
 // ===== GEMINI CONNECTION TEST =====
 async function testGeminiConnection() {
   try {
-    const response = await fetch(`${API_BASE_URL}/api/gemini/test`);
+    const response = await apiRequest(API_CONFIG.ENDPOINTS.GEMINI_TEST);
     if (response.ok) {
       const data = await response.json();
       if (data.success) {
@@ -164,11 +164,8 @@ async function processWithProgress(requestBody) {
 
   try {
     // Start the processing request
-    const response = await fetch(`${API_BASE_URL}/api/process`, {
+    const response = await apiRequest(API_CONFIG.ENDPOINTS.PROCESS, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
       body: JSON.stringify(requestBody)
     });
     
@@ -403,9 +400,8 @@ function fileToBase64(file) {
     // send to your server-side proxy. The proxy should call Gemini and return structured JSON ranking.
     const status = document.createElement('div'); status.className='small'; status.textContent='Enviando para Gemini...'; cardEl.appendChild(status);
     try{
-        const resp = await fetch(`${API_BASE_URL}/api/gemini/enhance`, {
+        const resp = await apiRequest(API_CONFIG.ENDPOINTS.GEMINI_ENHANCE, {
         method:'POST',
-        headers:{'Content-Type':'application/json'},
         body: JSON.stringify({deRow, candidates})
       });
       if(!resp.ok){
@@ -422,14 +418,4 @@ function fileToBase64(file) {
       status.textContent = 'Erro: ' + e.message;
     }
   }
-// Dynamic API URL based on environment
-const getApiBaseUrl = () => {
-  // Check if we're in production (Vercel)
-  if (window.location.hostname === 'dexpara-automation.vercel.app') {
-    return 'https://dexpara-backend-production.up.railway.app';
-  }
-  // Default to localhost for development
-  return 'http://localhost:3000';
-};
-
-const API_BASE_URL = getApiBaseUrl();
+// API configuration is now handled by apiConfig.js module

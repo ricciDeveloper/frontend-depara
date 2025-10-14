@@ -50,6 +50,6 @@
     }
   ],
   "env": {
-    "API_BASE_URL": "https://dexpara-backend.herokuapp.com"
+    "API_BASE_URL": "https://backend-depara.onrender.com"
   }
 }

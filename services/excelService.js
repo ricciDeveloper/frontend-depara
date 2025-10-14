@@ -226,9 +226,8 @@ class ExcelService {
 
   async enhanceData(deRow, candidates) {
     try {
-      const resp = await fetch('/api/gemini/enhance', { // em vez de /api/gemini
+      const resp = await apiRequest(API_CONFIG.ENDPOINTS.GEMINI_ENHANCE, {
         method:'POST',
-        headers:{'Content-Type':'application/json'},
         body: JSON.stringify({deRow, candidates})
       });
       
