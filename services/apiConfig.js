@@ -1,7 +1,7 @@
 // Configuração da API para o frontend
 export const API_CONFIG = {
   // URL base do backend
-  BASE_URL: 'https://backend-depara.onrender.com',
+  BASE_URL: 'http://localhost:3000',
   
   // Endpoints
   ENDPOINTS: {
