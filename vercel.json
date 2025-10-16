@@ -3,7 +3,7 @@
   "name": "dexpara-frontend",
   "builds": [
     {
-      "src": "index.html",
+      "src": "public/**/*",
       "use": "@vercel/static"
     }
   ],
@@ -11,15 +11,6 @@
     {
       "source": "/(.*)",
       "destination": "/index.html"
-    }
-  ],
-  "ignoreFiles": ["services/*.js", "script.js", "*.css"],
-  "headers": [
-    {
-      "source": "/(.*).(js|css)",
-      "headers": [
-        { "key": "Content-Type", "value": "application/javascript" }
-      ]
     }
   ],
   "env": {
